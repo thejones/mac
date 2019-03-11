@@ -101,7 +101,10 @@ if brew list | grep -Fq brew-cask; then
 fi
 
 fancy_echo "Updating Homebrew formulae ..."
+
+
 brew update --force # https://github.com/Homebrew/brew/issues/1151
+## Write a homebrew file for the rest.
 brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
 tap "homebrew/services"
@@ -116,7 +119,7 @@ brew "tmux"
 brew "vim"
 brew "watchman"
 brew "zsh"
-brew "ngrok"
+##  Required by elastic search...
 
 # GitHub
 brew "hub"
@@ -130,14 +133,20 @@ brew "coreutils"
 brew "yarn"
 brew "go"
 cask "gpg-suite"
+cask "java8"
 
 # Databases
 brew "postgres", restart_service: :changed
 brew "redis", restart_service: :changed
 brew "elasticsearch", restart_service: :changed
 
-brew "sqitch --with-postgres-support"
+## Unsure if this is the correct param format
+#brew "sqitch", with_postgres_support: :true
+
 EOF
+
+## Sqitch - Not sure how to put these in the above (see comment)
+brew reinstall sqitch --with-postgres-support
 
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then

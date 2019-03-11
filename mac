@@ -106,7 +106,7 @@ brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
 tap "homebrew/services"
 tap "caskroom/cask"
-tap sqitchers/sqitch
+tap "sqitchers/sqitch"
 
 # Unix
 brew "git"

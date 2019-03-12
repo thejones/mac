@@ -100,8 +100,10 @@ if brew list | grep -Fq brew-cask; then
   brew uninstall --force brew-cask
 fi
 
-fancy_echo "Updating Homebrew formulae ..."
+fancy_echo "Adding OH-MY-ZSH"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g')"
 
+fancy_echo "Updating Homebrew formulae ..."
 
 brew update --force # https://github.com/Homebrew/brew/issues/1151
 ## Write a homebrew file for the rest.
@@ -119,7 +121,6 @@ brew "tmux"
 brew "vim"
 brew "watchman"
 brew "zsh"
-##  Required by elastic search...
 
 # GitHub
 brew "hub"
@@ -133,6 +134,8 @@ brew "coreutils"
 brew "yarn"
 brew "go"
 cask "gpg-suite"
+
+##  Required by elastic search...
 cask "java8"
 
 # Databases
@@ -140,13 +143,13 @@ brew "postgres", restart_service: :changed
 brew "redis", restart_service: :changed
 brew "elasticsearch", restart_service: :changed
 
-## Unsure if this is the correct param format
-#brew "sqitch", with_postgres_support: :true
+## Unsure if this is the correct param format (see below for alternative)
+brew "sqitch", with_postgres_support: :true
 
 EOF
 
 ## Sqitch - Not sure how to put these in the above (see comment)
-brew reinstall sqitch --with-postgres-support
+## brew install sqitch --with-postgres-support
 
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then

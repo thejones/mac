@@ -2,6 +2,7 @@ Mac
 ======
 
 Mac is a script to set up an macOS laptop for web and mobile development.
+ Based on thoughtbot's laptop script but modified to be less Ruby centric.
 
 It can be run multiple times on the same machine safely.
 It installs, upgrades, or skips packages
@@ -12,15 +13,7 @@ Requirements
 
 We support:
 
-* macOS Mavericks (10.9)
-* macOS Yosemite (10.10)
-* macOS El Capitan (10.11)
-* macOS Sierra (10.12)
-* macOS High Sierra (10.13)
-* macOS Mojave (10.14)
-
-Older versions may work but aren't regularly tested.
-Bug reports for older versions are welcome.
+* macOS Latest - should work on recent.
 
 Install
 -------
@@ -28,7 +21,7 @@ Install
 Download the script:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/mac
+curl --remote-name https://raw.githubusercontent.com/thejones/mac/master/mac
 ```
 
 Review the script (avoid running scripts you haven't read!):
@@ -49,18 +42,11 @@ Optionally, review the log:
 less ~/laptop.log
 ```
 
-Optionally, [install thoughtbot/dotfiles][dotfiles].
-
-[dotfiles]: https://github.com/thoughtbot/dotfiles#install
-
 Debugging
 ---------
 
 Your last Laptop run will be saved to `~/laptop.log`.
 Read through it to see if you can debug the issue yourself.
-If not, copy the lines where the script failed into a
-[new GitHub Issue](https://github.com/thoughtbot/laptop/issues/new) for us.
-Or, attach the whole log file as an attachment.
 
 What it sets up
 ---------------
@@ -73,21 +59,13 @@ macOS tools:
 
 Unix tools:
 
-* [Exuberant Ctags] for indexing files for vim tab completion
 * [Git] for version control
 * [OpenSSL] for Transport Layer Security (TLS)
-* [RCM] for managing company and personal dotfiles
-* [The Silver Searcher] for finding things in files
-* [Tmux] for saving project state and switching between projects
 * [Watchman] for watching for filesystem events
 * [Zsh] as your shell
 
-[Exuberant Ctags]: http://ctags.sourceforge.net/
 [Git]: https://git-scm.com/
 [OpenSSL]: https://www.openssl.org/
-[RCM]: https://github.com/thoughtbot/rcm
-[The Silver Searcher]: https://github.com/ggreer/the_silver_searcher
-[Tmux]: http://tmux.github.io/
 [Watchman]: https://facebook.github.io/watchman/
 [Zsh]: http://www.zsh.org/
 
@@ -111,26 +89,26 @@ Image tools:
 Programming languages, package managers, and configuration:
 
 * [ASDF] for managing programming language versions
-* [Bundler] for managing Ruby libraries
 * [Node.js] and [NPM], for running apps and installing JavaScript packages
-* [Ruby] stable for writing general-purpose code
 * [Yarn] for managing JavaScript packages
 
-[Bundler]: http://bundler.io/
 [ImageMagick]: http://www.imagemagick.org/
 [Node.js]: http://nodejs.org/
 [NPM]: https://www.npmjs.org/
 [ASDF]: https://github.com/asdf-vm/asdf
-[Ruby]: https://www.ruby-lang.org/en/
 [Yarn]: https://yarnpkg.com/en/
 
 Databases:
 
 * [Postgres] for storing relational data
 * [Redis] for storing key-value data
+* [ElasticSearch] for fast searching
+* [Sqitch] for managing migrations for relational databases
 
 [Postgres]: http://www.postgresql.org/
 [Redis]: http://redis.io/
+[ElasticSearch]: https://www.elastic.co/products/elasticsearch
+[Sqitch]: https://sqitch.org/
 
 It should take less than 15 minutes to install (depends on your machine).
 
@@ -184,9 +162,6 @@ Laptop functions such as `fancy_echo` and
 `gem_install_or_update`
 can be used in your `~/.laptop.local`.
 
-See the [wiki](https://github.com/thoughtbot/laptop/wiki)
-for more customization examples.
-
 Contributing
 ------------
 
@@ -201,15 +176,6 @@ brew install shellcheck
 [ShellCheck]: http://www.shellcheck.net/about.html
 [Syntastic]: https://github.com/scrooloose/syntastic
 
-Thank you, [contributors]!
-
-[contributors]: https://github.com/thoughtbot/laptop/graphs/contributors
-
-By participating in this project,
-you agree to abide by the thoughtbot [code of conduct].
-
-[code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
-
 License
 -------
 
@@ -218,18 +184,3 @@ It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
 [LICENSE]: LICENSE
-
-About thoughtbot
-----------------
-
-![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)
-
-Laptop is maintained and funded by thoughtbot, inc.
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
-
-We are passionate about open source software.
-See [our other projects][community].
-We are [available for hire][hire].
-
-[community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com?utm_source=github
